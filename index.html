@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="Logo" class="logo">
+                Movie Recommender
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+                <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Disabled</a></li>
+            </ul>
+        </div>
+    </nav>
+    <header class="hero">
+        <div class="container">
+            <h1>Movie Recommender System</h1>
+            <p>Find and explore movies tailored to your taste</p>
+        </div>
+    </header>
+    <div class="container main-content">
+        <section class="user-options">
+            <h2>Search your movie</h2>
+            <div class="search-container">
+                <input type="text" id="movieInput" placeholder="Search for a movie...">
+                <ul id="movieSuggestions" class="suggestions"></ul>
+            </div>
+            <button onclick="recommend()">Recommend</button>
+            <button onclick="addToPlaylist()">Add to Playlist</button>
+            <button onclick="likeMovie()">Like</button>
+            <textarea id="comment" placeholder="Leave a comment"></textarea>
+            <button onclick="submitComment()">Submit Comment</button>
+        </section>
+        <section class="recommendations">
+            <h2>Recommendations</h2>
+            <div id="recommendationList"></div>
+        </section>
+        <section class="playlist">
+            <h2>Your Playlist</h2>
+            <ul id="playlist"></ul>
+        </section>
+        <section class="liked-movies">
+            <h2>Liked Movies</h2>
+            <ul id="likedMovies"></ul>
+        </section>
+        <section class="comments">
+            <h2>Comments</h2>
+            <div id="comments"></div>
+        </section>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Movie Recommender System</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+

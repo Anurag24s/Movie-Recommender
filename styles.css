@@ -1,0 +1,257 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #FF6666 25%, #FFCC33 75%); /* Updated gradient colors */
+    padding: 10px 0;
+    z-index: 1000;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    color: #333; /* Dark text for contrast */
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.navbar-brand img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    color: #333; /* Dark text for contrast */
+    text-decoration: none;
+    padding: 8px 10px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white on hover */
+}
+
+.nav-link.active {
+    background-color: #FFA500; /* Orange active link background */
+    border-radius: 10px;
+}
+
+.nav-link.disabled {
+    color: #888; /* Light grey text for disabled link */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 120px auto 20px; /* Added margin-top to create space below the fixed navbar */
+    padding: 20px;
+}
+
+
+.hero {
+    background: linear-gradient(135deg, #FFCC00 25%, #009B4D 75%);
+    color: #FAF5E9;
+    padding: 50px 0 20px; /* Adjusted padding to make the hero section thinner vertically */
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 36px; /* Increased font size for heading */
+    margin: 0;
+}
+
+.hero p {
+    font-size: 20px; /* Increased font size for paragraph */
+    margin: 10px 0 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 80px auto 20px; /* Added margin-top to create space below the fixed navbar */
+    padding: 20px;
+}
+
+
+.main-content {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 1;
+}
+
+.main-content section {
+    margin-bottom: 40px;
+}
+
+.main-content h2 {
+    font-size: 24px;
+    color: #009B4D; /* Green section headers */
+    border-bottom: 2px solid #FFCC00; /* Tangerine Yellow border */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    position: relative;
+}
+
+#movieInput {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.suggestions {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+}
+
+.suggestions li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions li:hover {
+    background-color: #eee;
+}
+
+button {
+    background-color: #FFCC00; /* Tangerine Yellow buttons */
+    color: #333; /* Darker text for buttons */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #FFA500; /* Slightly darker Tangerine Yellow on hover */
+}
+.movie-card .recommendation {
+    font-size: 20px;
+    color: #FFCC00; /* Tangerine Yellow recommendation text */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comments h3 {
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.comments p {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.footer {
+    background-color: #444; /* Dark background for footer */
+    color: #FAF5E9; /* Ivory text */
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.footer p {
+    margin: 0;
+}
+
+#movieInput {
+    width: calc(100% - 40px); /* Adjusted width to accommodate padding */
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensures padding is included in width calculation */
+}
+
+textarea#comment {
+    width: calc(100% - 40px); /* Adjusted width to make it narrower */
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.movie-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0; /* Darker background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.02);
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto; /* Added margin around the container */
+    padding: 20px;
+}
+
