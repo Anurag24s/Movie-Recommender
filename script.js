@@ -7,7 +7,12 @@ let comments = {};
 
 document.addEventListener("DOMContentLoaded", () => {
     fetch('https://raw.githubusercontent.com/anurag24s/Movie-Recommender/main/movies.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
             movies = data;
             populateMovieTitles();
@@ -16,7 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => console.error('Error fetching movies.json:', error));
 
     fetch('https://raw.githubusercontent.com/anurag24s/Movie-Recommender/main/similarity.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
             similarity = data;
         })
