@@ -6,10 +6,10 @@ let likes = [];
 let comments = {};
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('https://raw.githubusercontent.com/anurag24s/Movie-Recommender/main/movies.json')
+    fetch('movies.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
@@ -18,19 +18,23 @@ document.addEventListener("DOMContentLoaded", () => {
             populateMovieTitles();
             loadLikesAndComments();
         })
-        .catch(error => console.error('Error fetching movies.json:', error));
+        .catch(error => {
+            console.error('Error fetching movies.json:', error);
+        });
 
-    fetch('https://raw.githubusercontent.com/anurag24s/Movie-Recommender/main/similarity.json')
+    fetch('similarity.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
             similarity = data;
         })
-        .catch(error => console.error('Error fetching similarity.json:', error));
+        .catch(error => {
+            console.error('Error fetching similarity.json:', error);
+        });
 
     document.getElementById("movieInput").addEventListener("input", showSuggestions);
 });
@@ -52,7 +56,7 @@ function recommend() {
         const recommendedMovies = distances
             .map((distance, index) => ({ index, distance }))
             .sort((a, b) => b.distance - a.distance)
-            .slice(0, 5); // Adjusted to show top 5 recommendations
+            .slice(0, 5);
 
         recommendedMovies.forEach(rec => {
             const movieCard = document.createElement("div");
@@ -151,7 +155,7 @@ function showSuggestions() {
     movieList.innerHTML = "";
 
     if (input) {
-        const suggestions = movieTitles.filter(title => title.includes(input)).slice(0, 3); // Show up to 3 suggestions
+        const suggestions = movieTitles.filter(title => title.includes(input)).slice(0, 3);
         suggestions.forEach(title => {
             const li = document.createElement("li");
             li.textContent = title;
