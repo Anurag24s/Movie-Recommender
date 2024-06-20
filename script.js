@@ -6,19 +6,21 @@ let likes = [];
 let comments = {};
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('movies.json')
+    fetch('https://raw.githubusercontent.com/anurag24s/Movie-Recommender/main/movies.json')
         .then(response => response.json())
         .then(data => {
             movies = data;
             populateMovieTitles();
             loadLikesAndComments();
-        });
+        })
+        .catch(error => console.error('Error fetching movies.json:', error));
 
-    fetch('similarity.json')
+    fetch('https://raw.githubusercontent.com/anurag24s/Movie-Recommender/main/similarity.json')
         .then(response => response.json())
         .then(data => {
             similarity = data;
-        });
+        })
+        .catch(error => console.error('Error fetching similarity.json:', error));
 
     document.getElementById("movieInput").addEventListener("input", showSuggestions);
 });
