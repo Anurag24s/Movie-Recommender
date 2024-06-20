@@ -8,15 +8,22 @@ let comments = {};
 document.addEventListener("DOMContentLoaded", () => {
     fetch('movies.json')
         .then(response => {
+            console.log('movies.json response:', response);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            return response.json();
+            return response.text();
         })
-        .then(data => {
-            movies = data;
-            populateMovieTitles();
-            loadLikesAndComments();
+        .then(text => {
+            console.log('movies.json content:', text);
+            try {
+                movies = JSON.parse(text);
+                populateMovieTitles();
+                loadLikesAndComments();
+            } catch (error) {
+                console.error('Error parsing movies.json:', error);
+                throw new Error('Invalid JSON in movies.json');
+            }
         })
         .catch(error => {
             console.error('Error fetching movies.json:', error);
@@ -24,13 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetch('similarity.json')
         .then(response => {
+            console.log('similarity.json response:', response);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            return response.json();
+            return response.text();
         })
-        .then(data => {
-            similarity = data;
+        .then(text => {
+            console.log('similarity.json content:', text);
+            try {
+                similarity = JSON.parse(text);
+            } catch (error) {
+                console.error('Error parsing similarity.json:', error);
+                throw new Error('Invalid JSON in similarity.json');
+            }
         })
         .catch(error => {
             console.error('Error fetching similarity.json:', error);
