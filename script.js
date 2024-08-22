@@ -8,35 +8,40 @@ let comments = {};
 
 // Event listener when DOM content is loaded
 document.addEventListener("DOMContentLoaded", () => {
-    // Fetch movies and similarity data
-    const fetchMovies = fetch('https://filesneeded.s3.eu-north-1.amazonaws.com/movies.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            movies = data;
-            populateMovieTitles();
-        })
-        .catch(error => {
-            console.error('Error fetching movies.json:', error);
-        });
+    // Define the list of chunk files
+    const movieChunkFiles = ['movies_chunk_0.json', 'movies_chunk_1.json', 'movies_chunk_2.json','movies_chunk_3.json','movies_chunk_4.json'];
+    const similarityChunkFiles = ['similarity_chunk_0.json', 'similarity_chunk_1.json', 'similarity_chunk_2.json','similarity_chunk_3.json','similarity_chunk_4.json'];
 
-    const fetchSimilarity = fetch('https://filesneeded.s3.eu-north-1.amazonaws.com/similarity.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            similarity = data;
-        })
-        .catch(error => {
-            console.error('Error fetching similarity.json:', error);
-        });
+    // Function to load all chunks for a given list of files
+    function loadAllChunks(chunkFiles) {
+        let allData = [];
+        return Promise.all(chunkFiles.map(file => 
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    allData = allData.concat(data);
+                })
+        )).then(() => allData);
+    }
+
+    // Load movie chunks and similarity chunks
+    const fetchMovies = loadAllChunks(movieChunkFiles).then(data => {
+        movies = data;
+        populateMovieTitles();
+    }).catch(error => {
+        console.error('Error fetching movie chunks:', error);
+    });
+
+    const fetchSimilarity = loadAllChunks(similarityChunkFiles).then(data => {
+        similarity = data;
+    }).catch(error => {
+        console.error('Error fetching similarity chunks:', error);
+    });
 
     // Wait for both fetch operations to complete
     Promise.all([fetchMovies, fetchSimilarity])
@@ -60,7 +65,7 @@ function populateMovieTitles() {
 // Function to recommend movies based on selected movie
 function recommend() {
     if (movies.length === 0 || similarity.length === 0) {
-        alert('Sorry movies data not yet loaded, please wait');
+        alert('Sorry Movies data not yet loaded, please wait');
         return;
     }
 
